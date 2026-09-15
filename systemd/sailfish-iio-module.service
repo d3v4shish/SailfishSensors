@@ -1,0 +1,12 @@
+[Unit]
+Description=Load Sailfish virtual IIO driver
+Before=sailfish-iio-relay.service
+
+[Service]
+Type=oneshot
+ExecStart=/sbin/modprobe sailfish_iio
+ExecStop=/sbin/modprobe -r sailfish_iio
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

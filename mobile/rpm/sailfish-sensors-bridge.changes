@@ -1,0 +1,8 @@
+* Mon Sep 14 2026 Sailfish Sensors Bridge contributors <noreply@example.invalid> - 1.0.0-3
+- Add an authenticated loopback Qt Positioning publisher for the PC GPSD feed.
+
+* Mon Sep 14 2026 Sailfish Sensors Bridge contributors <noreply@example.invalid> - 1.0.0-2
+- Send the subscription acknowledgement before activating SensorFW backends.
+
+* Mon Sep 14 2026 Sailfish Sensors Bridge contributors <noreply@example.invalid> - 1.0.0-1
+- Initial loopback-only SensorFW publisher package.

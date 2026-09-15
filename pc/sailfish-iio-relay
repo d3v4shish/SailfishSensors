@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+set -eu
+
+exec env PYTHONPATH=/usr/local/lib/sailfish-sensors python3 -m sailfish_sensors "$@"

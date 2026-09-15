@@ -1,0 +1,21 @@
+[Unit]
+Description=SSH tunnel to Sailfish location publisher
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=sailfish-sensors
+Group=sailfish-sensors
+EnvironmentFile=/etc/sailfish-sensors/bridge.conf
+ExecStart=/usr/bin/ssh -N -o BatchMode=yes -o ExitOnForwardFailure=yes -o ServerAliveInterval=30 -o ServerAliveCountMax=3 -o StrictHostKeyChecking=accept-new -i /etc/sailfish-sensors/id_ed25519 -L 127.0.0.1:${SFS_LOCAL_GPS_PORT}:127.0.0.1:${SFS_PHONE_GPS_PORT} ${SFS_PHONE_USER}@${SFS_HOST}
+Restart=always
+RestartSec=5
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=strict
+ProtectHome=yes
+ReadOnlyPaths=/etc/sailfish-sensors/id_ed25519 /etc/ssh
+
+[Install]
+WantedBy=multi-user.target

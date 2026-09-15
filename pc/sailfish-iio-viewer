@@ -1,0 +1,8 @@
+#!/usr/bin/env python3
+"""Run the desktop Sailfish virtual-IIO viewer."""
+
+from sailfish_iio_viewer import main
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

@@ -1,0 +1,17 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+mobile/Makefile
+mobile/.qmake.stash
+mobile/.qmake.cache
+mobile/moc_*.cpp
+mobile/sailfish-sensor-bridge
+mobile/RPMS/
+*.log
+kernel/*.ko
+kernel/*.o
+kernel/*.mod
+kernel/*.mod.c
+kernel/Module.symvers
+kernel/modules.order
+kernel/.*.cmd

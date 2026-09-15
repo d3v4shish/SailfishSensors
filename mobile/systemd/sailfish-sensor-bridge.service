@@ -1,0 +1,14 @@
+[Unit]
+Description=Publish Sailfish SensorFW readings on loopback
+After=sensorfwd.service
+
+[Service]
+Type=simple
+User=nemo
+Group=nemo
+ExecStart=/usr/bin/sailfish-sensor-bridge --listen 127.0.0.1 --port 8765 --gps-listen 127.0.0.1 --gps-port 8766 --rate 50 --token-file /home/nemo/.config/sailfish-sensors/token
+Restart=on-failure
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target

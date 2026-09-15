@@ -1,0 +1,7 @@
+KERNEL=="sailfish-iio", MODE="0660", GROUP="sailfish-sensors"
+
+# The bridge injects directly into the IIO kfifo. Make iio-sensor-proxy use
+# its raw polling drivers instead of selecting its trigger-dependent buffer
+# driver from the generic distribution rule.
+SUBSYSTEM=="iio", ATTR{name}=="sailfish-accelerometer", ENV{IIO_SENSOR_PROXY_TYPE}="iio-poll-accel"
+SUBSYSTEM=="iio", ATTR{name}=="sailfish-proximity", ENV{IIO_SENSOR_PROXY_TYPE}="iio-poll-proximity", ENV{PROXIMITY_NEAR_LEVEL}="1"

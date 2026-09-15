@@ -1,0 +1,24 @@
+[Unit]
+Description=Relay Sailfish phone sensors to local IIO devices
+After=sailfish-iio-module.service sailfish-ssh-tunnel.service
+Requires=sailfish-iio-module.service sailfish-ssh-tunnel.service
+
+[Service]
+Type=simple
+User=sailfish-sensors
+Group=sailfish-sensors
+RuntimeDirectory=sailfish-sensors
+RuntimeDirectoryMode=0750
+EnvironmentFile=/etc/sailfish-sensors/bridge.conf
+ExecStart=/usr/local/lib/sailfish-sensors/sailfish-iio-relay --host 127.0.0.1 --port ${SFS_LOCAL_PORT} --token-file /etc/sailfish-sensors/token --socket /run/sailfish-sensors/sensors.sock --iio-device /dev/sailfish-iio --mount-matrix ${SFS_MOUNT_MATRIX}
+Restart=always
+RestartSec=2
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=strict
+ProtectHome=yes
+ReadWritePaths=/run/sailfish-sensors
+ReadOnlyPaths=/etc/sailfish-sensors/token /dev/sailfish-iio
+
+[Install]
+WantedBy=multi-user.target

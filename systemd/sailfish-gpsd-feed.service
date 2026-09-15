@@ -1,0 +1,21 @@
+[Unit]
+Description=Feed Sailfish location updates to localhost GPSD
+After=sailfish-gps-ssh-tunnel.service
+Requires=sailfish-gps-ssh-tunnel.service
+
+[Service]
+Type=simple
+User=sailfish-sensors
+Group=sailfish-sensors
+EnvironmentFile=/etc/sailfish-sensors/bridge.conf
+ExecStart=/usr/local/lib/sailfish-sensors/sailfish-gpsd-feed --host 127.0.0.1 --port ${SFS_LOCAL_GPS_PORT} --token-file /etc/sailfish-sensors/token --listen 127.0.0.1 --listen-port ${SFS_GPSD_FEED_PORT}
+Restart=always
+RestartSec=2
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=strict
+ProtectHome=yes
+ReadOnlyPaths=/etc/sailfish-sensors/token
+
+[Install]
+WantedBy=multi-user.target
